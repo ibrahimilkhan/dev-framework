@@ -1,0 +1,21 @@
+﻿@model DevFramework.Northwind.MvcWebUI.Models.ProductListViewModel
+@{
+        Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        @foreach (var item in Model.Products)
+                {
+        @item.ProductName  <br />
+                }
+    </div>
+</body>
+</html>

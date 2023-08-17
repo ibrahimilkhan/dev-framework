@@ -1,14 +1,20 @@
-﻿using DevFramework.Core.Aspects.Postsharp.TransactionAspects;
+﻿using DevFramework.Core.Aspects.Postsharp.CacheAspects;
+using DevFramework.Core.Aspects.Postsharp.LogAspects;
+using DevFramework.Core.Aspects.Postsharp.TransactionAspects;
 using DevFramework.Core.Aspects.Postsharp.ValidationAspects;
+using DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft;
+using DevFramework.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using DevFramework.Northwind.Business.Abstract;
 using DevFramework.Northwind.Business.ValidationRules.FluentValidation;
 using DevFramework.Northwind.DataAccess.Abstract;
 using DevFramework.Northwind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseLogger = DevFramework.Core.CrossCuttingConcerns.Logging.Log4Net.Loggers.DatabaseLogger;
 
 namespace DevFramework.Northwind.Business.Concrete.Managers
 {
@@ -22,12 +28,13 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
         }
 
         [FluentValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect(typeof(MemoryCacheManager))]
         public Product Add(Product product)
         {
-            //ValidatorTool.FluentValidator(new ProductValidator(), product);
             return _productDal.Add(product);
         }
 
+        [CacheAspect(typeof(MemoryCacheManager))]
         public List<Product> GetAll()
         {
             return _productDal.GetList();
@@ -48,22 +55,6 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
         {
             _productDal.Add(product1);
             _productDal.Update(product2);
-
-            /* Eğer [TransactipnScopeAspect] yazmasaydık aşağıdaki gibi kötü kod örneği ortaya çıkardı
-             
-            using (TransactionScope scope = new TransactionScope())
-            {
-                try
-                {
-                    _productDal.Add(product1);
-                    _productDal.Update(product2);
-                    scope.Complete();
-                }
-                catch
-                {
-                    scope.Dispose();
-                }
-            }*/
         }
     }
 }

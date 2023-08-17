@@ -17,9 +17,7 @@ namespace DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft
         public void Add(string key, object data, int cacheTime = 60)
         {
             if (data == null)
-            {
                 return;
-            }
 
             var policy = new CacheItemPolicy { AbsoluteExpiration = DateTime.Now + TimeSpan.FromMinutes(cacheTime) };
             Cache.Add(new CacheItem(key, data), policy);
@@ -27,9 +25,7 @@ namespace DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft
         public void Clear()
         {
             foreach (var item in Cache)
-            {
                 Remove(item.Key);
-            }
         }
         public T Get<T>(string key)
         {
@@ -49,9 +45,7 @@ namespace DevFramework.Core.CrossCuttingConcerns.Caching.Microsoft
             var keysToRemove = Cache.Where(x => regex.IsMatch(x.Key)).Select(x => x.Key).ToList();
 
             foreach (var key in keysToRemove)
-            {
                 Remove(key);
-            }
         }
     }
 }
