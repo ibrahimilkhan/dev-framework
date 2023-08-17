@@ -46,5 +46,14 @@ namespace DevFramework.Northwind.MvcWebUI.Controllers
             _productService.GetById(1);
             return "Got";
         }
+
+        public string AddUpdate() 
+        {
+            _productService.TransactionOperation(
+                new Product { ProductId = 1,CategoryId = 2,UnitPrice=400,QuantityPerUnit="1"},
+                new Product { ProductId = 1, CategoryId = 1, ProductName = "Test", UnitPrice = 10, QuantityPerUnit = "1" });
+
+            return "Success";
+        }
     }
 }

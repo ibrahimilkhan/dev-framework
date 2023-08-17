@@ -13,6 +13,7 @@ namespace DevFramework.Northwind.Business.ValidationRules.FluentValidation
         public ProductValidator()
         {
             RuleFor(p => p.ProductName).NotNull();
+
         }
     }
 }
