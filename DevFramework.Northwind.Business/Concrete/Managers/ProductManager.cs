@@ -1,4 +1,5 @@
 ﻿using DevFramework.Core.Aspects.PerformanceAspects;
+using DevFramework.Core.Aspects.Postsharp.AuthorizationAspects;
 using DevFramework.Core.Aspects.Postsharp.CacheAspects;
 using DevFramework.Core.Aspects.Postsharp.LogAspects;
 using DevFramework.Core.Aspects.Postsharp.TransactionAspects;
@@ -9,6 +10,7 @@ using DevFramework.Northwind.Business.Abstract;
 using DevFramework.Northwind.Business.ValidationRules.FluentValidation;
 using DevFramework.Northwind.DataAccess.Abstract;
 using DevFramework.Northwind.Entities.Concrete;
+using PostSharp.Aspects.Dependencies;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure.Interception;
@@ -39,6 +41,7 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
 
         [CacheAspect(typeof(MemoryCacheManager))]
         [PerformanceCounterAspect(2)]
+        [SecuredOperation(Roles = "Admin,Editor")]
         public List<Product> GetAll()
         {
             Thread.Sleep(3000);
