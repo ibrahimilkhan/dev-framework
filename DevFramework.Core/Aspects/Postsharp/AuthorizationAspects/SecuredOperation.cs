@@ -12,17 +12,20 @@ namespace DevFramework.Core.Aspects.Postsharp.AuthorizationAspects
     public class SecuredOperation : OnMethodBoundaryAspect
     {
         public string Roles { get; set; }
-        bool isAuthorized = false;
 
         public override void OnEntry(MethodExecutionArgs args)
         {
             string[] roles = Roles.Split(',');
 
-            foreach (var role in roles)
+            bool isAuthorized = false;
+
+
+            for (int i = 0; i < roles.Length; i++)
             {
-                if (System.Threading.Thread.CurrentPrincipal.IsInRole(role))
+                if (System.Threading.Thread.CurrentPrincipal.IsInRole(roles[i]))
                 {
                     isAuthorized = true;
+
                 }
             }
 
@@ -30,6 +33,7 @@ namespace DevFramework.Core.Aspects.Postsharp.AuthorizationAspects
             {
                 throw new SecurityException("You are not authorized!");
             }
+        
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Security;
 
 namespace DevFramework.Core.CrossCuttingConcerns.Security.Web
-{ 
+{
 
     public class AuthenticationHelper
     {
@@ -16,9 +16,9 @@ namespace DevFramework.Core.CrossCuttingConcerns.Security.Web
         {
             var authTicket = new FormsAuthenticationTicket(1, userName, DateTime.Now, expiration, rememberMe, CreateAuthTags(email, roles, firstName, lastName, id));
 
-            string encTicker = FormsAuthentication.Encrypt(authTicket);
+            string encTicket = FormsAuthentication.Encrypt(authTicket);
 
-            HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName));
+            HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
         }
 
         private static string CreateAuthTags(string email, string[] roles, string firstName, string lastName, Guid id)

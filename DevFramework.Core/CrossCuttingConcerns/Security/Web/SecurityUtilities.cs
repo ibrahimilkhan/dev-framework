@@ -13,7 +13,7 @@ namespace DevFramework.Core.CrossCuttingConcerns.Security.Web
         {
             var identity = new Identity
             {
-                Id = SetId(ticket),
+                Id = SetId(ticket), 
                 Name = SetName(ticket),
                 Email = SetEmail(ticket),
                 Roles = SetRoles(ticket),
@@ -38,13 +38,13 @@ namespace DevFramework.Core.CrossCuttingConcerns.Security.Web
 
         private string SetLastName(FormsAuthenticationTicket ticket)
         {
-            string[] data = ticket.UserData.Split(',');
+            string[] data = ticket.UserData.Split('|');
             return data[3];
         }
 
         private string SetFirstName(FormsAuthenticationTicket ticket)
         {
-            string[] data = ticket.UserData.Split(',');
+            string[] data = ticket.UserData.Split('|');
             return data[2];
         }
 

@@ -16,15 +16,16 @@ namespace DevFramework.Northwind.DataAccess.Concrete.EntityFramework
             Database.SetInitializer<NorthwindContext>(null);
         }
 
-        public DbSet<Product> Products { get; set; }
         // Normal şartlarda mapping otomatik yapılır. <Product> --> Products tablosune bağlar. Ama defensive programming yapmak lazım. Bu nedenle mappingi elle yaparsak mükemmel olur. 
-
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new CategoryMap());
+            modelBuilder.Configurations.Add(new UserMap());
         }
     }
 }
