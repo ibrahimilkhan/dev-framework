@@ -19,7 +19,7 @@ namespace DevFramework.Northwind.DataAccess.Concrete.EntityFramework.Mappings
             Property(x => x.FirstName).HasColumnName("FirstName");
             Property(x => x.LastName).HasColumnName("LastName");
             Property(x => x.Password).HasColumnName("Password");
-            Property(x => x.UserName).HasColumnName("UserName");
+            Property(x => x.Username).HasColumnName("Username");
         }
     }
 }

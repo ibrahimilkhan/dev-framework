@@ -33,7 +33,6 @@ namespace DevFramework.Core.Aspects.Postsharp.AuthorizationAspects
             {
                 throw new SecurityException("You are not authorized!");
             }
-        
         }
     }
 }

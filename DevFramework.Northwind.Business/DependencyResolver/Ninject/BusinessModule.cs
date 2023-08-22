@@ -23,6 +23,9 @@ namespace DevFramework.Northwind.Business.DependencyResolver.Ninject
             Bind<IProductService>().To<ProductManager>().InSingletonScope();
             Bind<IProductDal>().To<EfProductDal>().InSingletonScope();
 
+            Bind<IUserService>().To<UserManager>().InSingletonScope();
+            Bind<IUserDal>().To<EfUserDal>().InSingletonScope();
+
             // Alttaki üçü standart. Üsttekilere eklemeler yapılabilir.
             Bind(typeof(IQueryableRepository<>)).To(typeof(EfQueryableRepository<>));
             Bind<DbContext>().To<NorthwindContext>().InSingletonScope();
