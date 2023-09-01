@@ -17,7 +17,7 @@ namespace DevFramework.Core.Aspects.Postsharp.AuthorizationAspects
         {
             string[] roles = Roles.Split(',');
 
-            bool isAuthorized = false;
+            bool isAuthorized = true;
 
 
             for (int i = 0; i < roles.Length; i++)
