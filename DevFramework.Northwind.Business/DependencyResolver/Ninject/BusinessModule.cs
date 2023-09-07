@@ -5,6 +5,7 @@ using DevFramework.Northwind.Business.Abstract;
 using DevFramework.Northwind.Business.Concrete.Managers;
 using DevFramework.Northwind.DataAccess.Abstract;
 using DevFramework.Northwind.DataAccess.Concrete.EntityFramework;
+using DevFramework.Northwind.DataAccess.Concrete.NHibernate;
 using DevFramework.Northwind.DataAccess.Concrete.NHibernate.Helpers;
 using Ninject.Modules;
 using System;

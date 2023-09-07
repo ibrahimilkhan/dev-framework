@@ -41,11 +41,28 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
 
         [CacheAspect(typeof(MemoryCacheManager))]
         [PerformanceCounterAspect(2)]
-        [SecuredOperation(Roles = "Admin,Editor")]
+        //[SecuredOperation(Roles = "Admin,Editor")]
         public List<Product> GetAll()
         {
-            Thread.Sleep(3000);
-            return _productDal.GetList();
+            //Thread.Sleep(3000);
+
+
+            /* 
+          
+            Aşağıda AutoMapper gibi bir araç kullanmadan manuel mapping yaptık.
+            (EF kullanarak Api'de verileri çekebilmek için. NH kullansaydık mapping yapmaya gerek kalmıyor.)
+
+            */
+
+
+            return _productDal.GetList().Select(p => new Product
+            {
+                CategoryId = p.CategoryId,
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                QuantityPerUnit = p.QuantityPerUnit,
+                UnitPrice = p.UnitPrice
+            }).ToList(); 
         }
 
         public Product GetById(int id)
