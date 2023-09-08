@@ -44,7 +44,7 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
 
         [CacheAspect(typeof(MemoryCacheManager))]
         [PerformanceCounterAspect(2)]
-        //[SecuredOperation(Roles = "Admin,Editor")]
+        [SecuredOperation(Roles = "Admin,User")]
         public List<Product> GetAll()
         {
             var products = _mapper.Map<List<Product>>(_productDal.GetList());

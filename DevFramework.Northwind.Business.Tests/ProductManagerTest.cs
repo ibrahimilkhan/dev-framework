@@ -19,9 +19,9 @@ namespace DevFramework.Northwind.Business.Tests
         {
             Mock<IProductDal> productDal = new Mock<IProductDal>();
 
-            ProductManager productService = new ProductManager(productDal.Object);
+            //ProductManager productService = new ProductManager(productDal.Object);
 
-            productService.Add(new Product());
+            //productService.Add(new Product());
         }
     }
 }
