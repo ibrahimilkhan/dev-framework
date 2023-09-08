@@ -9,4 +9,5 @@ EF ve Nhibernate uyumlu.
 * Mocking icin Moq,
 * Validasyon icin FluentValidation,
 * Aspectler icin PostSharp,
-* Loglama icin log4net kutuphaneleri kullanildi. 
+* Loglama icin log4net 
+* Mapping icin AutoMapper kutuphaneleri kullanildi.
