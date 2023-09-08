@@ -1,4 +1,5 @@
-﻿using DevFramework.Core.Aspects.PerformanceAspects;
+﻿using AutoMapper;
+using DevFramework.Core.Aspects.PerformanceAspects;
 using DevFramework.Core.Aspects.Postsharp.AuthorizationAspects;
 using DevFramework.Core.Aspects.Postsharp.CacheAspects;
 using DevFramework.Core.Aspects.Postsharp.LogAspects;
@@ -26,10 +27,12 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
     public class ProductManager : IProductService
     {
         private IProductDal _productDal;
+        private readonly IMapper _mapper;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, IMapper mapper)
         {
             _productDal = productDal;
+            _mapper = mapper;
         }
 
         [FluentValidationAspect(typeof(ProductValidator))]
@@ -44,25 +47,8 @@ namespace DevFramework.Northwind.Business.Concrete.Managers
         //[SecuredOperation(Roles = "Admin,Editor")]
         public List<Product> GetAll()
         {
-            //Thread.Sleep(3000);
-
-
-            /* 
-          
-            Aşağıda AutoMapper gibi bir araç kullanmadan manuel mapping yaptık.
-            (EF kullanarak Api'de verileri çekebilmek için. NH kullansaydık mapping yapmaya gerek kalmıyor.)
-
-            */
-
-
-            return _productDal.GetList().Select(p => new Product
-            {
-                CategoryId = p.CategoryId,
-                ProductId = p.ProductId,
-                ProductName = p.ProductName,
-                QuantityPerUnit = p.QuantityPerUnit,
-                UnitPrice = p.UnitPrice
-            }).ToList(); 
+            var products = _mapper.Map<List<Product>>(_productDal.GetList());
+            return products;
         }
 
         public Product GetById(int id)
