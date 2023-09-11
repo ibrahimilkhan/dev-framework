@@ -1,0 +1,4 @@
+﻿Olusturdugumuz WCF'i WEbUI'da cagirmak istiyoruz. 
+Bizimkisi ClientServer mimarisi olmasaydi WebUI'da sag tik yapip "Add Service" ile ekleyebilirdik.
+Biz ChannelFactory vasıtasıyla calisma aninda bir proxy olusturup o proxy uzerinden ilerliyor olacagiz.
+Su an MVC kullaniyoruz ama ilerleyen zamanlarda belki WPF ile calisacagiz (Client olarak). Bu nedenle Proxy uretimini Core katmaninda olusturacagiz. Core -> Utilities -> Common
