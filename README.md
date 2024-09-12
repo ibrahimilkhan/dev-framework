@@ -2,12 +2,13 @@
 
 ## Enterprise Architecture Framework
 
-EF ve Nhibernate uyumlu. 
+Compitable with EF && Nhibernate. 
 
- Cache, log, performans ve validasyon aspectlerini iceriyor. 
+Included cache, log, performance ve model validation aspects. 
 
-* Mocking icin Moq,
-* Validasyon icin FluentValidation,
-* Aspectler icin PostSharp,
-* Loglama icin log4net 
-* Mapping icin AutoMapper kutuphaneleri kullanildi.
+Libraries
+* Mocking: Moq,
+* Validation: FluentValidation,
+* Aspects: PostSharp,
+* Log: log4net,
+* Mapping: AutoMapper.
